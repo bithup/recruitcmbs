@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.write.IInterviewDaoW">
+
+    <!--实体映射-->
+    <resultMap id="Interview" type="com.xgh.recruitcmbs.entity.Interview">
+        <!--主键id-->
+        <id property="id" column="id" javaType="Long"/>
+        <!--公司id-->
+        <result property="companyId" column="company_id" javaType="long" jdbcType="BIGINT"/>
+        <!--用户id-->
+        <result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT"/>
+        <!--邀请标题-->
+        <result property="title" column="title" javaType="String" jdbcType="VARCHAR"/>
+        <!--邀请内容-->
+        <result property="content" column="content" javaType="String" jdbcType="VARCHAR"/>
+        <!--面试时间-->
+        <result property="interviewTime" column="interview_time" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--面试地址-->
+        <result property="address" column="address" javaType="String" jdbcType="VARCHAR"/>
+        <!--联系人-->
+        <result property="contacts" column="contacts" javaType="String" jdbcType="VARCHAR"/>
+        <!--联系电话-->
+        <result property="telephone" column="telephone" javaType="String" jdbcType="VARCHAR"/>
+        <!--创建时间-->
+        <result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--修改时间-->
+        <result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--状态：-1删除；0取消；1正常-->
+        <result property="status" column="status" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段1-->
+        <result property="data1" column="data_1" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段2-->
+        <result property="data2" column="data_2" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段3-->
+        <result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段4-->
+        <result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段5-->
+        <result property="data5" column="data_5" javaType="String" jdbcType="VARCHAR"/>
+        <!--用户操作状态-1删除1正常-->
+        <result property="personOperationStatus" column="person_operation_status" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段7-->
+        <result property="data7" column="data_7" javaType="int" jdbcType="INTEGER"/>
+        <!--用字段8-->
+        <result property="data8" column="data_8" javaType="Double" jdbcType="DOUBLE"/>
+    </resultMap>
+
+	<insert id="add" parameterType="com.xgh.recruitcmbs.entity.Interview">
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT max(id)  AS value  from tb_interview
+		</selectKey>
+		INSERT INTO tb_interview
+		(id,company_id,member_id,title,content,interview_time,address,contacts,telephone,create_date,update_date,status,data_1,data_2,data_3,data_4,data_5,person_operation_status,data_7,data_8)
+		VALUES
+		(#{id},#{companyId},#{memberId},#{title},#{content},#{interviewTime},#{address},#{contacts},#{telephone},#{createDate},#{updateDate},#{status},#{data1},#{data2},#{data3},#{data4},#{data5},#{personOperationStatus},#{data7},#{data8})
+	</insert>
+
+	<update id="update" parameterType="com.xgh.recruitcmbs.entity.Interview">
+		 UPDATE tb_interview
+		 SET 
+			 company_id = #{companyId},
+			 member_id = #{memberId},
+			 title = #{title},
+			 content = #{content},
+			 interview_time = #{interviewTime},
+			 address = #{address},
+			 contacts = #{contacts},
+			 telephone = #{telephone},
+			 create_date = #{createDate},
+			 update_date = #{updateDate},
+			 status = #{status},
+			 data_1 = #{data1},
+			 data_2 = #{data2},
+			 data_3 = #{data3},
+			 data_4 = #{data4},
+			 data_5 = #{data5},
+			 person_operation_status = #{personOperationStatus},
+			 data_7 = #{data7},
+			 data_8 = #{data8}
+		 WHERE id = #{id}
+	</update>
+
+	<update id="updateBatch" parameterType="String" >
+		UPDATE tb_interview
+		SET status = -1,update_date=now()
+		WHERE id IN
+		<foreach collection="array" open="(" close=")" item="id" separator="," index="index">
+			${id}
+		</foreach>
+	</update>
+
+	<update id="clearOutByCompanyId" parameterType="String">
+		UPDATE tb_interview
+		SET status = -1,update_date=now()
+		WHERE company_id = #{companyId}
+	</update>
+
+	<update id="deleteMemberInterviews" parameterType="String">
+		UPDATE tb_interview
+		SET person_operation_status = -1,update_date=now()
+		WHERE id IN
+		<foreach collection="array" open="(" close=")" item="id" separator="," index="index">
+			${id}
+		</foreach>
+	</update>
+
+	<update id="clearOutByMemberId" parameterType="String">
+		UPDATE tb_interview
+		SET person_operation_status = -1,update_date=now()
+		WHERE member_id = #{memberId}
+	</update>
+
+</mapper>

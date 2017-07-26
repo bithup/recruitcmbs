@@ -1,0 +1,124 @@
+.head_wrap{
+	background: #02cc9f;
+}
+.head{
+	height: 60px;
+	line-height: 60px;
+	font-size: 28px;
+}
+.head .return_s{
+	position: absolute;
+	background: url(../images/return_s.png) 0 0 no-repeat;
+	width: 16px;
+	height: 29px;
+	background-size: cover;
+	display: inline-block;
+	top: 15px;
+	left: 30px;
+}
+.head span{
+	font-size: 24px;
+	float: right;
+	margin-right: 20px;
+}
+.my_photo{
+	height: 300px;
+	text-align: center;
+	font-size: 28px;
+	color: #fff;
+}
+.photo_wrap a{
+	overflow: hidden;
+}
+.photo_wrap a img{
+	float: left;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	margin-top: 50px;
+}
+.my_photo h6{
+	font-size: 28px;
+	margin: 8px 0 12px 0;
+}
+.my_photo span{
+	display: block;
+}
+.my_photo span img{
+	margin-left: 10px;
+}
+.content_wrap{
+	margin-bottom: 16px;
+	background: #fff;
+}
+.mine{
+	width: 59%;
+	margin: 0 auto;
+	overflow: hidden;
+	height: 160px;
+}
+.mine li{
+	width: 50%;
+	float: left;
+	text-align: center;
+	margin-top: 30px;
+	overflow: hidden;
+}
+.mine li a{
+	color: #333;
+}
+.mine li a span{
+	display: block;
+}
+.mine .resume{
+	margin-top: 10px;
+}
+.mine .collect{
+	margin-top: 15px;
+}
+.mine li:nth-child(1) a{
+	float: left;
+}
+.mine li:nth-child(2) a{
+	float: right;
+}
+.my_list{
+	width: 100%;
+}
+.my_list li{
+	border-bottom: 1px solid #eee;
+	line-height: 110px;
+	width: 100%;
+}
+.my_list li a{
+	display: block;
+	width: 94%;
+	margin: 0 auto;
+	background: url(../images/enter.png) right center no-repeat;
+	color: #333;
+	font-size: 28px;
+}
+.record{
+	background: url(../images/record.png) 0 center no-repeat;
+	padding-left: 49px;
+}
+.invite{
+	background: url(../images/invite.png) 0 center no-repeat;
+	padding-left: 49px;
+}
+.pb{
+	background: url(../images/pb.png) 0 center no-repeat;
+	padding-left: 49px;
+}
+.money{
+	background: url(../images/money.png) 0 center no-repeat;
+	padding-left: 49px;
+}
+.changemm{
+	background: url(../images/changemm.png) 0 center no-repeat;
+	padding-left: 49px;
+}
+.exit{
+	background: url(../images/exit.png) 0 center no-repeat;
+	padding-left: 49px;
+}

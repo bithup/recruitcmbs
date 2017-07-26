@@ -1,0 +1,127 @@
+body,html{
+	max-width: 750px;
+	background: #ededf2;
+}
+.con_top{
+	font-size: 28px;
+	width: 90%;
+	margin: 0 auto;
+}
+.con_top h3{
+	color: #000;
+	margin-bottom: 45px;
+}
+.num_wrapper{
+	position: relative;
+}
+.num{
+	width: 92%;
+	line-height: 120px;
+	border: 1px solid #c5c5c8;
+	border-radius: 10px;
+	font-size: 30px;
+	color: #ea3323;
+	padding: 0 26px;
+	background: #fff;
+	display: inline-block;
+}
+.numContent{
+	width: 92%;
+	line-height: 120px;
+	border: 1px solid #c5c5c8;
+	border-radius: 10px;
+	font-size: 30px;
+	color: #ea3323;
+	padding: 0 26px;
+	background: #fff;
+	display: inline-block;
+}
+.remind{
+	color: #d64f25;
+	font-size: 26px;
+	margin: 42px 0 45px 22px;
+	background: url(/resources/ui/site/images/light.png) 0 center no-repeat;
+	padding-left: 54px;
+	line-height: 47px;
+}
+.remind_icon{
+	position: absolute;
+	top: 131px;
+	right: 13px;
+}
+.remind_icon img{
+	width: 80%;
+}
+.btn{
+	width: 90%;
+	margin: 0 auto;
+}
+.next_btn{
+	width: 90%;
+	margin: 0 auto;
+}
+.com_btn,.per_btn{
+	display: inline-block;
+	line-height: 89px;
+	background: #aaa;
+	width: 40%;
+	font-size: 30px;
+	color: #fff;
+	border-radius: 10px;
+}
+.com_btn{
+	margin-right: 80px;
+}
+.open_app,.download_app{
+	display: block;
+	line-height: 89px;
+	background: #ec5c3d;
+	width: 100%;
+	font-size: 32px;
+	color: #fff;
+	border-radius: 10px;
+}
+.open_app{
+	margin-bottom: 30px;
+}
+.show_btn{
+	display: none;
+}
+.body_mask{
+	width: 100%;
+	background: rgba(0,0,0,0.5);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	display: none;
+}
+.body_mask h1{
+	font-size: 44px;
+	color: #fff;
+	margin-left: 90px;
+	padding-left: 63px;
+	width: 55%;
+}
+.body_mask h1:nth-child(1){
+	margin: 153px 0 50px 90px;
+}
+.num1{
+	background: url(/resources/ui/site/images/num1.png) 0 8px no-repeat;
+	overflow: hidden;
+}
+.num2{
+	background: url(/resources/ui/site/images/num2.png) 0 8px no-repeat;
+	line-height: 1.5;
+}
+.num1 i,img{
+	float: left;
+}
+.num1 i{
+	margin-right: 16px;
+}
+.guide{
+	position: absolute;
+	top: 38px;
+	right: 74px;
+}

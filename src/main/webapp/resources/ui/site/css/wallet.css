@@ -1,0 +1,76 @@
+.content{
+	width: 92%;
+	background: #fff;
+	margin: 30px auto 0;
+	height: 240px;
+	border-radius: 8px;
+}
+.remainder{
+	height: 180px;
+	background: #35ccab;
+	border-radius: 8px;
+}
+.remainder dl{
+	overflow: hidden;
+	color: #fff;
+	padding-top: 67px;
+}
+.remainder dl dt,dd{
+	float: left;
+}
+.remainder dl dt{
+	background: url(../images/wallet.png) 0 center no-repeat;
+	padding-left: 90px;
+	margin: 0 46px 0 110px;
+}
+.handle{
+	overflow: hidden;
+}
+.handle a{
+	float: left;
+	width: 50%;
+	text-align: center;
+	color: #333;
+	line-height: 60px;
+}
+.handle a:nth-child(1){
+	position: relative;
+}
+.handle a:nth-child(1)::after{
+	content: "";
+	display: inline-block;
+	width: 2px;
+	height: 22px;
+	background: #333;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -11px;
+}
+
+/* 钱包明细样式 */
+.det_content{
+	width: 100%;
+	margin-top: 15px;
+}
+.det_content ul{
+	background: #fff;
+}
+.det_content ul li{
+	padding: 0 24px;
+	border-bottom: 1px solid #eee;
+	overflow: hidden;
+	line-height: 100px;
+}
+.det_content ul li span{
+	float: left;
+}
+.det_content ul li span:nth-child(1){
+	width: 42%;
+}
+.det_content ul li span:nth-child(2){
+	width: 35%;
+}
+.det_content ul li span:nth-child(3){
+	float: right;
+}

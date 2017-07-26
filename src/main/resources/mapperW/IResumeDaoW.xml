@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.write.IResumeDaoW">
+
+	<resultMap id="resumeMap" type="com.xgh.recruitcmbs.entity.Resume">
+		<!--主键id-->
+		<id property="id" column="id" javaType="Long" />
+		<!--用户id-->
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<!--简历完整度-->
+		<result property="integrity" column="integrity" javaType="String" jdbcType="VARCHAR" />
+		<!--是否为默认简历：0不是；1是-->
+		<result property="isDefault" column="is_default" javaType="int" jdbcType="INTEGER" />
+		<!--创建时间-->
+		<result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--修改时间-->
+		<result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--状态：-1删除；0取消；1正常-->
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<!--是否公开：0公开：1不公开-->
+		<result property="isScreen" column="is_screen" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段1-->
+		<result property="data1" column="data_1" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段2-->
+		<result property="data2" column="data_2" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段3-->
+		<result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段4-->
+		<result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段5-->
+		<result property="data5" column="data_5" javaType="long" jdbcType="BIGINT" />
+		<!--备用字段6-->
+		<result property="data6" column="data_6" javaType="long" jdbcType="BIGINT" />
+		<!--备用字段7-->
+		<result property="data7" column="data_7" javaType="long" jdbcType="BIGINT" />
+		<!--备用字段8-->
+		<result property="data8" column="data_8" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--备用字段9-->
+		<result property="data9" column="data_9" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段10-->
+		<result property="data10" column="data_10" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<delete id="delete" parameterType="java.lang.Long">
+		 DELETE FROM tb_resume
+		 WHERE id = #{id}
+	</delete>
+
+	<insert id="insert" parameterType="com.xgh.recruitcmbs.entity.Resume">
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT max(id)  AS value  from tb_resume
+		</selectKey>
+		 INSERT INTO tb_resume
+ 		(id,member_id,integrity,is_default,create_date,update_date,status,is_screen,data_1,data_2,data_3,data_4,data_5,data_6,data_7,data_8,data_9,data_10) 
+		 VALUES 
+ 		(#{id},#{memberId},#{integrity},#{isDefault},#{createDate},#{updateDate},#{status},#{isScreen},#{data1},#{data2},#{data3},#{data4},#{data5},#{data6},#{data7},#{data8},#{data9},#{data10}) 
+	</insert>
+
+
+	<update id="update" parameterType="com.xgh.recruitcmbs.entity.Resume">
+		 UPDATE tb_resume
+		 SET 
+			 member_id = #{memberId},
+			 integrity = #{integrity},
+			 is_default = #{isDefault},
+			 create_date = #{createDate},
+			 update_date = #{updateDate},
+			 status = #{status},
+			 is_screen = #{isScreen},
+			 data_1 = #{data1},
+			 data_2 = #{data2},
+			 data_3 = #{data3},
+			 data_4 = #{data4},
+			 data_5 = #{data5},
+			 data_6 = #{data6},
+			 data_7 = #{data7},
+			 data_8 = #{data8},
+			 data_9 = #{data9},
+			 data_10 = #{data10}
+		 WHERE id = #{id}
+	</update>
+
+</mapper>

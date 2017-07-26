@@ -1,0 +1,28 @@
+package com.xgh.recruitcmbs.dao.read;
+
+
+import com.xgh.recruitcmbs.entity.Subject;
+
+import java.util.List;
+
+/**
+ * Created by BSX on 2017/3/14.
+ */
+public interface ISubjectDaoR {
+
+    /**
+     * bsx
+     * 根据id查询轮播图
+     *
+     * @param id
+     * @return
+     */
+    public Subject get(long id);
+
+    /**
+     * 获取首页轮播图
+     * @return
+     */
+    public List<Subject> getSubjects();
+
+}

@@ -1,0 +1,140 @@
+.head_right{
+	float: right;
+	overflow: hidden;
+	margin-top: 26px;
+}
+.head_right a{
+	float: left;
+	overflow: hidden;
+}
+.head_right a img{
+	width: 37px;
+	height: 37px;
+	margin-right: 20px;
+	float: left;
+}
+
+/*轮播开始*/
+.slider img{
+	width: 750px;
+	height: 340px;
+}
+.slider{
+	display:none
+}/*用于获取更加体验*/
+.slider .focus{
+	height: 0;
+}
+.focus>div{ 
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%,-50%); 
+	margin-top: 0!important; right: 0!important; 
+}
+.focus span{
+	width:10px;
+	height:10px;
+	margin-right:10px;
+	border-radius:50%;
+	background:#666;
+	font-size:0
+}
+.focus span.current{
+	background:#fff
+}
+.nav{
+	width: 100%;
+	background:#fff;
+	margin: 16px auto;
+	padding: 20px 0;
+}
+.nav ul{
+	width: 100%;
+	overflow: hidden;
+}
+.nav ul li{
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+.nav ul li span{
+	display: block;
+	font-size: 24px;
+	color: #666;
+}
+.content{
+	width: 100%;
+	background:#fff;
+}
+.content ul{
+	background: #eeeeee;
+}
+.content ul li{
+	overflow: hidden;
+	background: #fff;
+	margin-bottom: 20px;
+}
+.content ul li img{
+	float: left;
+	width: 120px;
+	height: 120px;
+	margin: 20px 0 20px 20px;
+}
+.com_intro{
+	float: left;
+	margin: 20px 0 20px 20px;
+}
+.com_intro h3{
+	color: #333;
+	font-size: 30px;
+}
+.com_intro p{
+	font-size: 28px;
+}
+.com_intro div span{
+	font-size: 28px;
+}
+.after::after{
+	background: #666;
+	content: "";
+	width: 1px;
+	height: 20px;
+	display: inline-block;
+}
+.hot{
+	width: 78%;
+	float: right;
+	border-top: 1px solid #ccc;
+	line-height: 60px;
+	font-size: 24px;
+	color: #999;
+	padding-left: 8px;
+}
+.hot b{
+	font-size: 30px;
+	color: #35ccaa;
+}
+.foot_wrap{
+	width: 100%;
+	padding: 12px 0 118px 0;
+
+}
+.foot_wrap ul{
+	width: 76%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.foot_wrap ul li{
+	float: left;
+	width: 19%;
+	text-align: center;
+	margin-right: 8%
+}
+.foot_wrap ul li:nth-child(4){
+	margin-right: 0;
+}
+.foot_wrap ul li span{
+	display: block;
+	font-size: 18px;
+	color: #666;
+}

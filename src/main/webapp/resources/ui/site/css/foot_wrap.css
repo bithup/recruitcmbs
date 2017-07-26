@@ -1,0 +1,50 @@
+form{
+	width: 100%;
+}
+form textarea{
+	display: block;
+	width: 634px;
+	height: 205px;
+	border-radius: 5px;
+	margin: 39px auto 34px;
+	font-size: 30px;
+	font-family: "微软雅黑";
+	color: #666;
+	padding: 27px 18px;
+}
+form input{
+	display: block;
+	width: 160px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 24px;
+	background: #02cc9f;
+	border-radius: 8px;
+	margin-left: 36px;
+}
+.ideas{
+	width: 100%;
+	padding-top: 38px;
+}
+.ideas li{
+	width: 96%;
+	border-bottom: 1px solid #fff;
+	height: 130px;
+	margin: 0 auto;
+
+}
+.ideas div{
+	overflow: hidden;
+	margin: 30px 0 17px 0;
+}
+.ideas .username{
+	float: left;
+	font-size: 30px;
+}
+.ideas .time{
+	float: right;
+}
+.ideas .comment{
+	color: #333;
+	margin-bottom: 16px;
+}

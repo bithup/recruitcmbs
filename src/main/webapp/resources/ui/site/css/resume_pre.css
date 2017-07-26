@@ -1,0 +1,68 @@
+.content{
+	width: 100%;
+}
+.content div{
+	background: #fff;
+}
+.wrap{
+	width: 95%;
+	margin:16px auto 0;
+}
+.wrap_{
+	width: 95%;
+	margin:0 auto;
+}
+.wrap h4{
+	color: #333;
+}
+.my_pic h4{
+	margin-top: 20px;
+	display: inline-block;
+}
+.pic_wrap{
+	text-align: center;
+}
+.pic_wrap i{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: inline-block;
+	overflow: hidden;
+}
+.pic_wrap i img{
+	float: left;
+	width: 100px;
+	height: 100px;
+}
+.pic_wrap span{
+	font-size: 24px;
+	color: #999;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+.my_base h4{
+	line-height: 75px;
+	border-bottom: 1px solid #eee;
+}
+.my_base span{
+	font-size: 18px;
+}
+.wrap ul li{
+	overflow: hidden;
+}
+.wrap ul li b{
+	overflow: hidden;
+	font-size: 28px;
+	float: left;
+	line-height: 64px;
+}
+.wrap ul li span{
+	line-height: 64px;
+	color: #6f6f6f;
+	font-size: 24px;
+	float: left;
+}
+.self_info{
+	text-indent: 2em;
+	padding-bottom: 122px;
+}

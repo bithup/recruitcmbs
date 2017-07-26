@@ -1,0 +1,102 @@
+body{
+	position: relative;
+}
+.content{
+	width: 100%;
+}
+.content ul{
+	width: 100%;
+	margin-top: 15px;
+	background: #fff;
+}
+.content ul li{
+	width: 95%;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+	overflow: hidden;
+	line-height: 100px;
+}
+.content ul li span{
+	float: left;
+}
+.content ul li a{
+	float: right;
+	overflow: hidden;
+	margin: 37px 15px 0 20px;
+}
+.content ul li a img{
+	float: left;
+}
+.content ul li b{
+	float: right;
+}
+.content button{
+	display: block;
+	width: 87%;
+	line-height: 70px;
+	background: #35ccab;
+	text-align: center;
+	font-size: 32px;
+	color: #fff;
+	margin: 279px auto 0;
+	border-radius: 8px;
+}
+/* =======蒙版======= */
+.pay{
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	margin-left: -290px;
+	width: 580px;
+	background: #fff;
+}
+.pay_tit{
+	color: #333;
+	text-align: center;
+	border-bottom: 1px solid #35ccab;
+	line-height: 60px;
+}
+.pay_range{
+	padding: 40px 0;
+	width: 30%;
+	margin: 0 auto;
+}
+.pay_range span{
+	overflow: hidden;
+	line-height: 30px;
+	display: inline-block;
+	font-size: 24px;
+}
+.pay_range input{
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	float: left;
+	margin-right: 8px;
+	font-size: 30px;
+	color: #666;
+}
+.pay_btn{
+	text-align: center;
+	margin-bottom: 20px;
+}
+.pay_btn button{
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	font-size: 24px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 8px;
+}
+.cancel{
+	background: #ccc;
+	color: #fff;
+	margin-right: 20px;
+}
+.confirm{
+	background: #35ccab;
+	color: #fff;
+}

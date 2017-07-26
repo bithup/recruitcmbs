@@ -1,0 +1,80 @@
+.content{
+	width: 100%;
+	background: #fff;
+	margin-top: 16px;
+}
+.content h6{
+	font-size: 24px;
+	color: #333;
+	padding-left: 20px;
+	line-height: 40px;
+	border-bottom: 1px solid #eee;
+}
+.msg_list li{
+	height: 150px;
+	overflow: hidden;
+	border-bottom: 1px solid #eee;
+}
+.msg_list li img{
+	float: left;
+	margin: 35px 20px 0;
+	width: 80px;
+	height: 80px;
+}
+.com_wrap{
+	float: left;
+	width: 81%;
+	margin-top: 30px;
+	position: relative;
+	line-height: 30px;
+}
+.com_wrap h4{
+	font-size: 28px;
+	color: #333;
+}
+.com_wrap h4 b:nth-child(2){
+	float: right;
+}
+.com_wrap p{
+	width: 80%;
+	font-size: 24px;
+	color: #666;
+	margin-top: 28px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.msg_count{
+	padding: 5px 10px;
+	background: #E60012;
+	border-radius: 17px;
+	font-size: 24px;
+	color: #fff;
+	line-height: 24px;
+	text-align: center;
+	display: inline-block;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+.msg_count01{
+	padding: 5px 10px;
+	background: #E60012;
+	border-radius: 17px;
+	font-size: 24px;
+	color: #fff;
+	line-height: 24px;
+	text-align: center;
+	display: inline-block;
+	position: absolute;
+	top: -14px;
+	right: auto;
+	left: 21px;
+	z-index: 999;
+}
+.msg_po{
+	position: relative;
+}
+.foot #ul_over{
+	overflow: visible;
+}

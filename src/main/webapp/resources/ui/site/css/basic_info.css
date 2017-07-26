@@ -1,0 +1,96 @@
+.content{
+	background: #fff;
+	margin-top: 16px;
+}
+.content ul li a{
+	display: block;
+	line-height: 100px;
+	overflow: hidden;
+	color: #666;
+}
+.content ul li:nth-child(1) a{
+	line-height: 140px;
+	border-bottom: 1px solid #eee;
+}
+.content ul li .ownphoto{
+	background: url(../images/myresume.png) 0 0 no-repeat;
+	width: 100px;
+	height: 100px;
+	float: right;
+	border-radius: 50%;
+	margin: 20px 40px 0 0;
+	padding-right: 0;
+}
+.content ul li a .basic_list{
+	width: 95%;
+	margin: 0 auto;
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid #eee;
+}
+.content ul li:nth-child(1) .basic_list{
+	border: none;
+}
+.content ul li input{
+	float: right;
+	background: url(../images/sel.png) right center no-repeat;
+	padding-right: 45px;
+	line-height: 100px;
+	color: #666;
+	font-size: 30px;
+	text-align: right;
+}
+.content ul li i{
+	float: right;
+	background: url(../images/sel.png) right center no-repeat;
+	padding-right: 45px;
+}
+.basic_list b{
+	float: right;
+	margin-right: 40px;
+	overflow: hidden;
+}
+.basic_list b span{
+	float: left;
+}
+.sex_ipt{
+	width: 22px;
+	height: 22px;
+	border: 2px solid #bfbfbf;
+	border-radius: 50%;
+	background-image: url(../images/circle01.png);
+	background-repeat: no-repeat;
+	background-position: 6px 6px;
+	cursor: pointer;
+	position: relative;
+	margin: 40px 15px 0 0;
+}
+.radioClass{
+	opacity: 0;
+	cursor: pointer;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	z-index: 999;
+}
+.on{
+	background-position: 6px 6px;
+	background-image: url(../images/circle.png);
+}
+.male{
+	margin-right: 38px;
+}
+.save_btn input{
+	background: #35ccab;
+	display: block;
+	width: 87%;
+	line-height: 70px;
+	color: #fff;
+	text-align: center;
+	font-size: 32px;
+	border-radius: 8px;
+	margin: 38px auto 0;
+}

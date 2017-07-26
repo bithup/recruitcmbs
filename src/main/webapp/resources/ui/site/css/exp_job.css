@@ -1,0 +1,68 @@
+body{
+	position: relative;
+}
+.content{
+	width: 100%;
+}
+.content ul{
+	width: 100%;
+	background: #fff;
+}
+.content ul li{
+	width: 95%;
+	margin: 0 auto;
+	border-bottom: 1px solid #ddd;
+	color: #393939;
+	font-size: 24px;
+	overflow: hidden;
+	line-height: 89px;
+}
+.content ul li span{
+	float: left;
+}
+.content ul li b{
+	float: right;
+	color: #c5c5c5;
+}
+.content ul li a{
+	float: right;
+	overflow: hidden;
+	margin: 32px 0 0 37px;
+}
+.content ul li a img{
+	float: right;
+}
+.content ul li i{
+	font-size: 28px;
+	color: #333;
+	float: left;
+	margin-right: 88px;
+}
+/* ======蒙版====== */
+.state{
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	margin-left: -310px;
+	width: 620px;
+	background: #fff;
+}
+.state_tit{
+	color: #333;
+	text-align: center;
+	border-bottom: 1px solid #35ccab;
+	line-height: 90px;
+}
+.state ul{
+	width: 100%;
+}
+.state ul li{
+	width: 84%;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+	line-height: 100px;
+}
+.state .active{
+	color: #35ccaa;
+	background: url(../images/mark.png) 92% center no-repeat;
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.write.IGreatDemandDaoW">
+
+	<!--实体映射-->
+	<resultMap id="GreatDemand" type="com.xgh.recruitcmbs.entity.GreatDemand">
+		<!---->
+		<id property="id" column="id" javaType="Long" />
+		<!--公司id-->
+		<result property="companyId" column="company_id" javaType="long" jdbcType="BIGINT" />
+		<!--热门职位数量-->
+		<result property="hotCount" column="hot_count" javaType="int" jdbcType="INTEGER" />
+		<!--工作种类id-->
+		<result property="jobKindsId" column="job_kinds_id" javaType="long" jdbcType="BIGINT" />
+		<!--创建日期-->
+		<result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--更新日期-->
+		<result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--1整除0删除-->
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段1-->
+		<result property="data1" column="data_1" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段2-->
+		<result property="data2" column="data_2" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段3-->
+		<result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段4-->
+		<result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.xgh.recruitcmbs.entity.GreatDemand">
+		INSERT INTO tb_great_demand
+		(id,company_id,hot_count,job_kinds_id,create_date,update_date,status,data_1,data_2,data_3,data_4)
+		VALUES
+		(#{id},#{companyId},#{hotCount},#{jobKindsId},#{createDate},#{updateDate},#{status},#{data1},#{data2},#{data3},#{data4})
+	</insert>
+
+	<!-- 修 改-->
+	<update id="update" parameterType="com.xgh.recruitcmbs.entity.GreatDemand">
+		 UPDATE tb_great_demand
+		 SET 
+			 company_id = #{companyId},
+			 hot_count = #{hotCount},
+			 job_kinds_id = #{jobKindsId},
+			 create_date = #{createDate},
+			 update_date = #{updateDate},
+			 status = #{status},
+			 data_1 = #{data1},
+			 data_2 = #{data2},
+			 data_3 = #{data3},
+			 data_4 = #{data4}
+		 WHERE id = #{id}
+	</update>
+
+</mapper>

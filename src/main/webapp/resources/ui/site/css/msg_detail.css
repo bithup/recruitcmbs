@@ -1,0 +1,25 @@
+body{
+	position: relative;
+}
+.head a:nth-child(2){
+	position: absolute;
+	top: 0px;
+	right: 30px;
+}
+.msg_list{
+	width: 95%;
+	margin: 80px auto 0;
+}
+.mask ul{
+	width: 160px;
+	position: absolute;
+	top: 38px;
+	right: 30px;
+	background: #fff;
+}
+.mask ul li{
+	font-size: 28px;
+	line-height: 48px;
+	border-bottom: 1px solid #eee;
+	padding-left: 20px;
+}

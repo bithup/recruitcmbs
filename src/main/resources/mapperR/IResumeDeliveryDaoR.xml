@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.read.IResumeDeliveryDaoR">
+
+    <!--实体映射-->
+    <resultMap id="ResumeDelivery" type="com.xgh.recruitcmbs.entity.ResumeDelivery">
+        <!--主键id-->
+        <id property="id" column="id" javaType="Long"/>
+        <!--用户id-->
+        <result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT"/>
+        <!--职位id-->
+        <result property="positionId" column="position_id" javaType="long" jdbcType="BIGINT"/>
+        <!--简历id-->
+        <result property="resumeId" column="resume_id" javaType="long" jdbcType="BIGINT"/>
+        <!--投递状态：0未处理1.待面试2待确认3已转正4不合适-->
+        <result property="deliveryStatus" column="delivery_status" javaType="int" jdbcType="INTEGER"/>
+        <!--创建时间-->
+        <result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--修改时间-->
+        <result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--状态：-1删除；0取消；1正常-->
+        <result property="status" column="status" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段1-->
+        <result property="data1" column="data_1" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段2-->
+        <result property="data2" column="data_2" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段3-->
+        <result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段4-->
+        <result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段5-->
+        <result property="data5" column="data_5" javaType="String" jdbcType="VARCHAR"/>
+        <!--是否被查看1已查看0未查看-->
+        <result property="isView" column="is_view" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段7-->
+        <result property="data7" column="data_7" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段8-->
+        <result property="data8" column="data_8" javaType="Double" jdbcType="DOUBLE"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+		id,	member_id,	position_id,	resume_id,	delivery_status,	create_date,	update_date,	status,	data_1,	data_2,	data_3,	data_4,	data_5,	is_view,	data_7,	data_8
+	</sql>
+
+
+    <select id="get" resultMap="ResumeDelivery" parameterType="java.lang.Long">
+        SELECT
+        *
+        FROM tb_resume_delivery
+        WHERE id = #{id}
+    </select>
+
+    <select id="getDeliveryCount" resultType="int" parameterType="java.lang.Long">
+        SELECT
+        count(id)
+        FROM tb_resume_delivery
+        WHERE position_id = #{positionId}
+        AND
+        status=1
+    </select>
+
+
+    <select id="getDeliverJobListByPositionId" resultType="hashmap" parameterType="hashmap">
+        SELECT
+        resumeDelivery.resume_id as resumeId,
+        resumeDelivery.create_date as createDate,
+        member.head_path as headPath,
+        member.head_real_path as headRealPath,
+        member.real_name as realName,
+        member.zone_id as zoneId,
+        member.work_year as workYear,
+        member.education as education,
+        position.job_kinds_name as jobKindsName
+        FROM
+        tb_resume_delivery resumeDelivery
+        LEFT JOIN tb_position position ON resumeDelivery.position_id = position.id
+        LEFT JOIN tb_member_user member ON resumeDelivery.member_id=member.id
+        LEFT JOIN tb_resume resume ON resume.member_id=member.id
+        LEFT JOIN tb_job_objective jobObjective ON jobObjective.resume_id=resume.id
+        where resumeDelivery.position_id=#{positionId}
+        AND
+        resumeDelivery.status=1
+        <if test="education!= null and education!=''">
+            and member.education=#{education}
+        </if>
+        <if test="workYear!= null and workYear!=''">
+            AND member.work_year=#{workYear}
+        </if>
+        <if test="jobType!= null and jobType!=''">
+            and position.job_type=#{jobType}
+        </if>
+        <if test="zoneId!= null and zoneId!=''">
+            and jobObjective.zone_id=#{zoneId}
+        </if>
+        AND
+        member.status=1
+        AND
+        position.status=1
+        limit ${(page-1)*pageSize},${pageSize}
+    </select>
+
+
+    <select id="screenResumeDelivery" resultType="hashmap" parameterType="hashmap">
+        SELECT
+        resumeDelivery.create_date as createDate,
+        member.head_path as headRealPath,
+        member.real_name as realName,
+        member.work_year as workYear,
+        member.zone_id as zoneId,
+        job.job_name as jobName,
+        member.education as edu
+        FROM
+        tb_resume_delivery resumeDelivery
+        LEFT JOIN tb_job_objective job ON resumeDelivery.resume_id=job.resume_id
+        LEFT JOIN tb_resume resume ON job.resume_id=resume.id
+        LEFT JOIN tb_member_user member ON resume.member_id=member.id
+        WHERE
+        1=1
+        <if test="edu!= null and jobName!=''">
+            and
+            member.education=#{edu}
+        </if>
+        <if test="workYear!= null and workYear!=''">
+            AND
+            member.work_year=#{workYear}
+        </if>
+        <if test="jobType!= null and jobType!=''">
+            AND
+            job.job_type=#{jobType}
+        </if>
+        <if test="zoneId!= null and zoneId!=''">
+            AND
+            job.zone_id=#{zoneId}
+        </if>
+
+
+    </select>
+
+
+    <select id="getListPage" parameterType="hashmap" resultType="hashmap">
+        SELECT
+            p.job_name as positionName,
+            p.id as positionId,
+            rd.id,
+            rd.create_date AS createDate,
+            rd.delivery_status AS deliveryStatus,
+            rd.is_view AS isView,
+            rd.member_id AS memberId,
+            rd.resume_id AS resumeId,
+            rd.position_id AS positionId,
+            mu.education,
+			mu.address,
+			mu.birthday,
+			mu.email,
+			mu.head_real_path AS headRealPath,
+			mu.real_name As realName,
+			mu.sex,
+			mu.telephone,
+			mu.work_year AS workYear,
+			mu.zone_name AS zoneName,
+			jo.job_name AS jobName,
+			jo.data_1 AS kindsId
+        FROM
+            tb_resume_delivery rd
+        LEFT JOIN tb_position p ON rd.position_id = p.id
+        LEFT JOIN tb_member_user mu ON rd.member_id = mu.id
+        LEFT JOIN tb_job_objective jo ON rd.resume_id = jo.resume_id
+        WHERE
+            p.company_id = #{companyId}
+       AND rd.delivery_status = #{type}
+       AND rd.status >=0
+       ORDER BY rd.create_date DESC
+       limit ${(page-1)*pagesize},${pagesize}
+    </select>
+
+    <select id="getLastDeliveries" parameterType="hashmap" resultType="hashmap">
+        SELECT
+            *
+        FROM
+            tb_resume_delivery rd
+        LEFT JOIN tb_position p ON rd.position_id = p.id
+        WHERE
+            p.company_id = #{companyId}
+        AND rd.member_id = #{memberId}
+        AND 30 > DATEDIFF(NOW(), rd.create_date)
+        ORDER BY
+            rd.create_date DESC
+        limit 1
+    </select>
+
+
+    <select id="getDeliveryByMemAndPosition" parameterType="hashmap" resultMap="ResumeDelivery">
+        SELECT
+        *
+        FROM
+        tb_resume_delivery rd
+        WHERE
+        rd.position_id = #{positionId}
+        AND rd.member_id = #{memberId}
+        ORDER BY
+        rd.create_date DESC
+        limit 1
+    </select>
+
+
+
+    <select id="getDeliveriesAmongThirty" parameterType="hashmap" resultMap="ResumeDelivery">
+        SELECT
+        *
+        FROM
+        tb_resume_delivery
+        WHERE
+        position_id = #{positionId}
+        AND member_id = #{memberId}
+        AND 30 > DATEDIFF(NOW(),create_date)
+        ORDER BY
+        create_date DESC
+        limit 1
+    </select>
+
+    <select id="getDeliveriesList" parameterType="hashmap" resultType="hashmap">
+        SELECT
+        resumeDelivery.id as resumeDeliveryId,
+        resumeDelivery.position_id as positionId,
+        resumeDelivery.is_view as isView,
+        resumeDelivery.create_date as createDate,
+        company.id as companyId,
+	    company.logo_path as logoPath,
+        company.company_name as companyName,
+        position.job_name as jobName,
+        position.salary_min as salaryMin,
+        position.salary_max as salaryMax,
+        position.zone_id as zoneId
+        FROM
+	    tb_resume_delivery resumeDelivery
+        LEFT JOIN tb_position position ON resumeDelivery.position_id = position.id
+        LEFT JOIN tb_company_info company ON position.company_id=company.id
+        WHERE
+	    resumeDelivery.member_id =#{memberId}
+        AND resumeDelivery. STATUS = 1
+        order by resumeDelivery.create_date desc
+        limit ${(page-1)*pageSize},${pageSize}
+    </select>
+
+
+    <select id="getDeliveriesListByMemberId" parameterType="hashmap" resultType="String">
+        select
+        id
+        from
+        tb_resume_delivery
+        where
+        member_id=#{memberId}
+        AND
+        status=1
+
+    </select>
+
+    <select id="getMessageBoxCount" parameterType="hashmap" resultType="hashmap">
+        SELECT
+        resume.id as resumeId,
+	    resume.position_id as positionId,
+        resume.member_id as memberId,
+        resume.is_view as isView,
+        position.id as positionId,
+        position.job_name as jobName,
+        position.company_id as companyId,
+        company.logo_path as logoPath
+        FROM
+	    tb_resume_delivery resume
+        LEFT  JOIN tb_position position ON resume.position_id=position.id
+        LEFT  JOIN tb_company_info company on position.company_id=company.id
+        where
+        position.company_id=#{companyId}
+        and resume.delivery_status=#{deliveryStatus}
+        and position.`status`=1
+        and resume.`status`=1
+        and resume.is_view=0
+
+    </select>
+
+
+
+</mapper>

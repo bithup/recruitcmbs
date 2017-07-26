@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.write.IResumeDeliveryDaoW">
+
+	<!--实体映射-->
+	<resultMap id="ResumeDelivery" type="com.xgh.recruitcmbs.entity.ResumeDelivery">
+		<!--主键id-->
+		<id property="id" column="id" javaType="Long" />
+		<!--用户id-->
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<!--职位id-->
+		<result property="positionId" column="position_id" javaType="long" jdbcType="BIGINT" />
+		<!--简历id-->
+		<result property="resumeId" column="resume_id" javaType="long" jdbcType="BIGINT" />
+		<!--投递状态：0未处理1.待面试2待确认3已转正4不合适-->
+		<result property="deliveryStatus" column="delivery_status" javaType="int" jdbcType="INTEGER" />
+		<!--创建时间-->
+		<result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--修改时间-->
+		<result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--状态：-1删除；0取消；1正常-->
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段1-->
+		<result property="data1" column="data_1" javaType="long" jdbcType="BIGINT" />
+		<!--备用字段2-->
+		<result property="data2" column="data_2" javaType="long" jdbcType="BIGINT" />
+		<!--备用字段3-->
+		<result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段4-->
+		<result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段5-->
+		<result property="data5" column="data_5" javaType="String" jdbcType="VARCHAR" />
+		<!--是否被查看1已查看0未查看-->
+		<result property="isView" column="is_view" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段7-->
+		<result property="data7" column="data_7" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段8-->
+		<result property="data8" column="data_8" javaType="Double" jdbcType="DOUBLE" />
+	</resultMap>
+
+	<insert id="add" parameterType="com.xgh.recruitcmbs.entity.ResumeDelivery">
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			SELECT max(id)  AS value  from tb_resume_delivery
+		</selectKey>
+		INSERT INTO tb_resume_delivery
+		(id,member_id,position_id,resume_id,delivery_status,create_date,update_date,status,data_1,data_2,data_3,data_4,data_5,is_view,data_7,data_8)
+		VALUES
+		(#{id},#{memberId},#{positionId},#{resumeId},#{deliveryStatus},#{createDate},#{updateDate},#{status},#{data1},#{data2},#{data3},#{data4},#{data5},#{isView},#{data7},#{data8})
+	</insert>
+
+	<insert id="addBatch" parameterType="com.xgh.recruitcmbs.entity.ResumeDelivery">
+		insert into tb_resume_delivery
+		(
+		member_id,
+		position_id,
+		resume_id,
+		delivery_status,
+		create_date,
+		update_date,
+		status,
+		data_1,
+		data_2,
+		data_3,
+		data_4,
+		data_5,
+		is_view,
+		data_7,
+		data_8
+		)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(
+			#{item.memberId,jdbcType=BIGINT},
+			#{item.positionId,jdbcType=BIGINT},
+			#{item.resumeId,jdbcType=BIGINT},
+			#{item.deliveryStatus,jdbcType=INTEGER},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.status,jdbcType=INTEGER},
+			#{item.data1,jdbcType=BIGINT},
+			#{item.data2,jdbcType=BIGINT},
+			#{item.data3,jdbcType=VARCHAR},
+			#{item.data4,jdbcType=VARCHAR},
+			#{item.data5,jdbcType=VARCHAR},
+			#{item.isView,jdbcType=INTEGER},
+			#{item.data7,jdbcType=INTEGER},
+			#{item.data8,jdbcType=DOUBLE}
+			)
+		</foreach>
+	</insert>
+
+	<update id="batchDeleteByIdList" parameterType="java.util.List">
+		UPDATE tb_resume_delivery set status=-1,update_date=now() where id in
+		<foreach collection="list" item="idItem" index="index" open="("
+				 separator="," close=")">
+			#{idItem}
+		</foreach>
+	</update>
+
+	<update id="update" parameterType="com.xgh.recruitcmbs.entity.ResumeDelivery">
+		 UPDATE tb_resume_delivery
+		 SET 
+			 member_id = #{memberId},
+			 position_id = #{positionId},
+			 resume_id = #{resumeId},
+			 delivery_status = #{deliveryStatus},
+			 create_date = #{createDate},
+			 update_date = #{updateDate},
+			 status = #{status},
+			 data_1 = #{data1},
+			 data_2 = #{data2},
+			 data_3 = #{data3},
+			 data_4 = #{data4},
+			 data_5 = #{data5},
+			 is_view = #{isView},
+			 data_7 = #{data7},
+			 data_8 = #{data8}
+		 WHERE id = #{id}
+	</update>
+
+</mapper>

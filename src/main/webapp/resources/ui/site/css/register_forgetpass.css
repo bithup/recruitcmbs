@@ -1,0 +1,73 @@
+body{
+	background:url(../images/background.png) 0 0 no-repeat;
+}
+.head{
+	background:transparent;
+}
+.mB{
+	margin-bottom: 200px;
+}
+form{
+	width: 75%;
+	margin: 0 auto;
+}
+form input{
+	display: block;
+	font-size: 24px;
+	width: 90%;
+	margin: 0 auto;
+	color: #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff; opacity:1; 
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;opacity:1;
+}
+input:-ms-input-placeholder{
+    color: #fff;opacity:1;
+}
+input::-webkit-input-placeholder{
+    color: #fff;opacity:1;
+}
+form input:nth-child(1){
+	background:transparent url(../images/phone.png) 7px center no-repeat;
+	line-height: 88px;
+	padding-left: 55px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(2){
+	background:transparent url(../images/yzm.png) 7px center no-repeat;
+	line-height: 88px;
+	padding-left: 55px;
+	border-bottom: 1px solid #fff;
+	width: 43.6%;
+	margin: 0;
+	display: inline-block;
+}
+form input:nth-child(3){
+	line-height: 57px;
+	width: 43.2%;
+	margin: 0;
+	display: inline-block;
+	background: #35ccab;
+	vertical-align: bottom;
+}
+form input:nth-child(4){
+	background:transparent url(../images/password1.png) 7px center no-repeat;
+	line-height: 88px;
+	padding-left: 55px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(5){
+	background:transparent url(../images/password2.png) 7px center no-repeat;
+	line-height: 88px;
+	padding-left: 55px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(6){
+	width: 100%;
+	background: #35ccab;
+	line-height: 83px;
+	margin-top: 129px;
+}

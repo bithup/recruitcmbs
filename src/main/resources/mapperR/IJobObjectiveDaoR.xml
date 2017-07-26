@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.read.IJobObjectiveDaoR">
+
+    <!--实体映射-->
+    <resultMap id="JobObjective" type="com.xgh.recruitcmbs.entity.JobObjective">
+        <!--主键id-->
+        <id property="id" column="id" javaType="Long"/>
+        <!--简历id-->
+        <result property="resumeId" column="resume_id" javaType="long" jdbcType="BIGINT"/>
+        <!--工作性质：1全职；2兼职-->
+        <result property="jobType" column="job_type" javaType="int" jdbcType="INTEGER"/>
+        <!--期望城市id-->
+        <result property="zoneId" column="zone_id" javaType="long" jdbcType="BIGINT"/>
+        <!--期望城市-->
+        <result property="zoneName" column="zone_name" javaType="String" jdbcType="VARCHAR"/>
+        <!--期望职位-->
+        <result property="jobName" column="job_name" javaType="String" jdbcType="VARCHAR"/>
+        <!--期望行业id-->
+        <result property="industryId" column="industry_id" javaType="long" jdbcType="BIGINT"/>
+        <!--期望行业-->
+        <result property="industryName" column="industry_name" javaType="String" jdbcType="VARCHAR"/>
+        <!--期望月薪起点-->
+        <result property="salaryMin" column="salary_min" javaType="String" jdbcType="VARCHAR"/>
+        <!--期望薪资终点-->
+        <result property="salaryMax" column="salary_max" javaType="String" jdbcType="VARCHAR"/>
+        <!--在职状态（1.离岗-随时到岗；2在职-月内到岗；3在职-考虑机会；4在职-暂不考虑；5应届生）-->
+        <result property="serviceStatus" column="service_status" javaType="int" jdbcType="INTEGER"/>
+        <!--补充说明-->
+        <result property="remark" column="remark" javaType="String" jdbcType="VARCHAR"/>
+        <!--创建时间-->
+        <result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--修改时间-->
+        <result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--状态：-1删除；0取消；1正常-->
+        <result property="status" column="status" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段1-->
+        <result property="data1" column="data_1" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段2-->
+        <result property="data2" column="data_2" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段3-->
+        <result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段4-->
+        <result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段5-->
+        <result property="data5" column="data_5" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段6-->
+        <result property="data6" column="data_6" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段7-->
+        <result property="data7" column="data_7" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段8-->
+        <result property="data8" column="data_8" javaType="Double" jdbcType="DOUBLE"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+		id,	resume_id,	job_type,	zone_id,	zone_name,	job_name,	industry_id,	industry_name,	salary_min,	salary_max,	service_status,	remark,	create_date,	update_date,	status,	data_1,	data_2,	data_3,	data_4,	data_5,	data_6,	data_7,	data_8
+	</sql>
+
+
+    <select id="get" resultMap="JobObjective" parameterType="java.lang.Long">
+        SELECT
+        *
+        FROM tb_job_objective
+        WHERE id = #{id}
+    </select>
+
+    <select id="companyResearch" resultType="hashmap" parameterType="hashmap">
+        SELECT
+        resume.id as resumeId,
+        member.real_name AS realName,
+        member.head_real_path AS headRealPath,
+        member.work_year AS workYear,
+        member.zone_id as zoneId,
+        member.zone_name as zoneName,
+        member.education as edu,
+        k.NAME AS jobName
+        FROM
+        tb_job_objective job
+        LEFT JOIN tb_kinds k ON job.data_1 = k.id
+        LEFT JOIN tb_resume resume ON job.resume_id = resume.id
+        LEFT JOIN tb_member_user member ON resume.member_id = member.id
+        WHERE
+        1=1
+        <if test="zoneId!= null and zoneId!=''">
+            AND job.zone_id=#{zoneId}
+        </if>
+        <if test="jobName!= null and jobName!=''">
+            and
+            job.job_name LIKE '%${jobName}%'
+        </if>
+        <if test="zoneName!= null and zoneName!=''">
+            and
+            job.zone_name LIKE '%${zoneName}%'
+        </if>
+        <if test="jobId!= null and jobId!=''">
+            and
+            job.data_1 =#{jobId}
+        </if>
+        and resume.is_screen=1
+        limit ${(page-1)*pageSize},${pageSize}
+    </select>
+
+    <select id="getByResumeId" parameterType="hashmap" resultMap="JobObjective">
+        SELECT * from tb_job_objective where resume_id = #{resumeId} and status >=0
+    </select>
+
+
+</mapper>

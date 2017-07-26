@@ -1,0 +1,44 @@
+.content{
+	width: 100%;
+	background:#fff;
+	margin-top: 15px;
+}
+.content ul li{
+	width: 95%;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+	padding: 30px 0;
+}
+.content ul li input{
+	float: right;
+	background: url(../images/sel.png) right center no-repeat;
+	padding-right: 30px;
+	color: #666;
+	font-size: 30px;
+	text-align: right;
+}
+.save_btn input{
+	width: 650px;
+	line-height: 70px;
+	background:#35ccab;
+	text-align: center;
+	font-size: 32px;
+	color: #fff;
+	display: block;
+	margin: 0 auto;
+	border-radius: 8px;
+	margin-top: 338px;
+}
+.content ul li a{
+	color: #666;
+	display: block;
+}
+.content ul li a i{
+	float: right;
+	background: url(../images/sel.png) right center no-repeat;
+	padding-right: 30px;
+	max-width: 70%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}

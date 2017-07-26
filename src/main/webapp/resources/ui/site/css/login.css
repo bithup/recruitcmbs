@@ -1,0 +1,65 @@
+body{
+	background:url(../images/background.png) 0 0 no-repeat;
+}
+.head{
+	background:transparent;
+	margin-bottom: 296px;
+}
+form{
+	width: 77%;
+	margin: 0 auto;
+}
+form input{
+	display: block;
+	font-size: 28px;
+	width: 89%;
+	margin: 0 auto;
+	color: #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff; opacity:1; 
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;opacity:1;
+}
+input:-ms-input-placeholder{
+    color: #fff;opacity:1;
+}
+input::-webkit-input-placeholder{
+    color: #fff;opacity:1;
+}
+form input:nth-child(1){
+	background:transparent url(../images/user.png) 0 center no-repeat;
+	line-height: 88px;
+	padding-left: 65px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(2){
+	background:transparent url(../images/password.png) 7px center no-repeat;
+	line-height: 88px;
+	padding-left: 65px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(3){
+	width: 574px;
+	background:#35ccaa;
+	height: 96px;
+	font-size: 30px;
+	margin-top: 64px;
+}
+.zw_wrap{
+	width: 75%;
+	margin: 0 auto;
+	overflow: hidden;
+	margin-top: 30px;
+}
+.zw_wrap a{
+	font-size: 24px;
+	color: #fff;
+}
+.zw_wrap a:nth-child(1){
+	float: left;
+}
+.zw_wrap a:nth-child(2){
+	float: right;
+}

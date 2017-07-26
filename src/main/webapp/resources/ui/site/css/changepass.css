@@ -1,0 +1,56 @@
+body{
+	background:url(../images/background.png) 0 0 no-repeat;
+}
+.head{
+	background:transparent;
+	margin-bottom: 296px;
+}
+.mC{
+	margin-bottom: 260px;
+}
+form{
+	width: 75%;
+	margin: 0 auto;
+}
+form input{
+	display: block;
+	font-size: 24px;
+	width: 90%;
+	margin: 0 auto;
+	color: #fff;
+	line-height: 80px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff; opacity:1; 
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;opacity:1;
+}
+input:-ms-input-placeholder{
+    color: #fff;opacity:1;
+}
+input::-webkit-input-placeholder{
+    color: #fff;opacity:1;
+}
+form input:nth-child(1){
+	background:transparent url(../images/password3.png) 7px center no-repeat;
+	padding-left: 55px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(2){
+	background:transparent url(../images/password4.png) 7px center no-repeat;
+	padding-left: 55px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(3){
+	background:transparent url(../images/password2.png) 7px center no-repeat;
+	padding-left: 55px;
+	border-bottom: 1px solid #fff;
+}
+form input:nth-child(4){
+	width: 100%;
+	background: #35ccab;
+	line-height: 83px;
+	margin-top: 120px;
+	text-align: center;
+}

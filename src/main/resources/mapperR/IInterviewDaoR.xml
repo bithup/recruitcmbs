@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.read.IInterviewDaoR">
+
+    <!--实体映射-->
+
+    <resultMap id="Interview" type="com.xgh.recruitcmbs.entity.Interview">
+        <!--主键id-->
+        <id property="id" column="id" javaType="Long"/>
+        <!--公司id-->
+        <result property="companyId" column="company_id" javaType="long" jdbcType="BIGINT"/>
+        <!--用户id-->
+        <result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT"/>
+        <!--邀请标题-->
+        <result property="title" column="title" javaType="String" jdbcType="VARCHAR"/>
+        <!--邀请内容-->
+        <result property="content" column="content" javaType="String" jdbcType="VARCHAR"/>
+        <!--面试时间-->
+        <result property="interviewTime" column="interview_time" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--面试地址-->
+        <result property="address" column="address" javaType="String" jdbcType="VARCHAR"/>
+        <!--联系人-->
+        <result property="contacts" column="contacts" javaType="String" jdbcType="VARCHAR"/>
+        <!--联系电话-->
+        <result property="telephone" column="telephone" javaType="String" jdbcType="VARCHAR"/>
+        <!--创建时间-->
+        <result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--修改时间-->
+        <result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--状态：-1删除；0取消；1正常-->
+        <result property="status" column="status" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段1-->
+        <result property="data1" column="data_1" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段2-->
+        <result property="data2" column="data_2" javaType="long" jdbcType="BIGINT"/>
+        <!--备用字段3-->
+        <result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段4-->
+        <result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段5-->
+        <result property="data5" column="data_5" javaType="String" jdbcType="VARCHAR"/>
+        <!--用户操作状态-1删除1正常-->
+        <result property="personOperationStatus" column="person_operation_status" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段7-->
+        <result property="data7" column="data_7" javaType="int" jdbcType="INTEGER"/>
+        <!--用字段8-->
+        <result property="data8" column="data_8" javaType="Double" jdbcType="DOUBLE"/>
+    </resultMap>
+
+
+    <select id="get" resultMap="Interview" parameterType="java.lang.Long">
+        SELECT
+        *
+        FROM tb_interview
+        WHERE id = #{id}
+    </select>
+
+
+    <select id="getListPage" parameterType="hashmap" resultType="hashmap">
+        SELECT
+        IFNULL(position.job_name,'') as positionName,
+        i.id,
+        i.company_id As companyId,
+        i.member_id AS memberId,
+        i.create_date AS createDate,
+        i.data_7 AS interviewStatus,
+        mu.education,
+        mu.address,
+        mu.birthday,
+        mu.email,
+        mu.head_real_path AS headRealPath,
+        mu.real_name As realName,
+        mu.sex,
+        mu.telephone,
+        mu.work_year AS workYear,
+        mu.zone_name AS zoneName,
+        r.id AS resumeId,
+        jo.job_name AS jobName,
+        jo.data_1 AS kindsId
+        FROM
+        tb_interview i
+        LEFT JOIN tb_position position on position.id=i.data_1
+        LEFT JOIN tb_member_user mu ON i.member_id = mu.id
+        LEFT JOIN tb_resume r ON mu.id = r.member_id
+        LEFT JOIN tb_job_objective jo ON jo.resume_id = r.id
+
+        WHERE
+        i.company_id = #{companyId}
+        <if test="type==null || type ==''">
+            AND i.`status` = 1
+        </if>
+        <if test="type!=null and type!=''">
+            <if test="type==0">
+                AND i.data_7 = #{type}
+            </if>
+            <if test="type==1">
+                AND i.data_7 in (1,2)
+            </if>
+        </if>
+        ORDER BY i.create_date DESC
+        limit ${(page-1)*pagesize},${pagesize}
+    </select>
+
+    <select id="getLastInterview" parameterType="hashmap" resultMap="Interview">
+        SELECT
+        *
+        FROM
+        tb_interview
+        WHERE
+        company_id = #{companyId}
+        AND member_id = #{memberId}
+        and data_1=#{data1}
+        ORDER BY
+        create_date DESC
+        LIMIT 1
+    </select>
+
+    <select id="getInterviewsAmongThirty" parameterType="hashmap" resultMap="Interview">
+        SELECT
+        *
+        FROM
+        tb_interview
+        WHERE
+        company_id = #{companyId}
+        AND member_id = #{memberId}
+        AND 30 > DATEDIFF(NOW(),create_date)
+        ORDER BY
+        create_date DESC
+        limit 1
+    </select>
+
+
+    <select id="getEnrollNum" parameterType="hashmap" resultType="int">
+        SELECT
+        COUNT(id)
+        FROM
+        tb_interview
+        WHERE
+        company_id =  #{companyId}
+        AND data_7 = #{type}
+    </select>
+
+
+    <select id="getInterviewsByMemberId" parameterType="hashmap" resultType="hashmap">
+        SELECT
+        i.id,
+        i.create_date AS createDate,
+        i.data_7 AS interviewStatus,
+        c.id AS companyId,
+        c.company_name AS comapnyName,
+        c.logo_real_path AS logoRealPath,
+        c.industry_name AS industryName,
+        c.company_size AS companySize,
+        c.address,
+        job.job_name as jobName,
+        IFNULL(position.job_name,'') as positionName
+        FROM
+        tb_interview i
+        INNER JOIN tb_company_info c ON i.company_id = c.id
+        LEFT JOIN tb_resume resume on resume.member_id=i.member_id
+        LEFT JOIN tb_job_objective job on job.resume_id=resume.id
+        LEFT JOIN tb_position position ON position.id=i.data_1
+        WHERE
+        i.person_operation_status = 1
+        AND c.is_check = 1
+        AND c.`status` = 1
+        AND i.member_id = #{memberId}
+        ORDER BY
+        i.create_date desc
+        limit ${(page-1)*pagesize},${pagesize}
+    </select>
+
+
+</mapper>

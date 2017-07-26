@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.read.IEduExperienceDaoR">
+
+	<!--实体映射-->
+	<resultMap id="EduExperience" type="com.xgh.recruitcmbs.entity.EduExperience">
+		<!--主键id-->
+		<id property="id" column="id" javaType="Long" />
+		<!--简历id-->
+		<result property="resumeId" column="resume_id" javaType="long" jdbcType="BIGINT" />
+		<!--教育开始时间-->
+		<result property="eduBeginDate" column="edu_begin_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--教育结束时间-->
+		<result property="eduEndDate" column="edu_end_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--学校名称-->
+		<result property="schoolName" column="school_name" javaType="String" jdbcType="VARCHAR" />
+		<!--是否统招-->
+		<result property="uniformExam" column="uniform_exam" javaType="int" jdbcType="INTEGER" />
+		<!--专业名称-->
+		<result property="major" column="major" javaType="String" jdbcType="VARCHAR" />
+		<!--学历1：初中以下；2：初中；3：中技；4：中专； 5：高中；6：大专；7：本科；8：硕士；9：MBA;10：EMBA;11：博士；12：其他；-->
+		<result property="eduBackground" column="edu_background" javaType="int" jdbcType="INTEGER" />
+		<!--创建时间-->
+		<result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--修改时间-->
+		<result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP" />
+		<!--状态：-1删除；0取消；1正常-->
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段1-->
+		<result property="data1" column="data_1" javaType="long" jdbcType="BIGINT" />
+		<!--备用字段2-->
+		<result property="data2" column="data_2" javaType="long" jdbcType="BIGINT" />
+		<!--备用字段3-->
+		<result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段4-->
+		<result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段5-->
+		<result property="data5" column="data_5" javaType="String" jdbcType="VARCHAR" />
+		<!--备用字段6-->
+		<result property="data6" column="data_6" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段7-->
+		<result property="data7" column="data_7" javaType="int" jdbcType="INTEGER" />
+		<!--备用字段8-->
+		<result property="data8" column="data_8" javaType="Double" jdbcType="DOUBLE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id,	resume_id,	edu_begin_date,	edu_end_date,	school_name,	uniform_exam,	major,	edu_background,	create_date,	update_date,	status,	data_1,	data_2,	data_3,	data_4,	data_5,	data_6,	data_7,	data_8
+	</sql>
+
+	<select id="get" resultMap="EduExperience" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tb_edu_experience
+		WHERE id = #{id}
+	</select>
+
+
+	<select id="getByResumeId" parameterType="hashmap" resultMap="EduExperience">
+		select * from tb_edu_experience where resume_id = #{resumeId} AND status >= 0 order by create_date asc
+	</select>
+
+
+
+</mapper>

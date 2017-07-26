@@ -1,0 +1,23 @@
+.content{
+	width: 100%;
+	margin-top: 20px;
+}
+.content textarea{
+	width: 95%;
+	margin: 0 auto;
+	height: 320px;
+	display: block;
+	background:#fff;
+}
+.save_btn input{
+	width: 650px;
+	line-height: 70px;
+	background:#35ccab;
+	text-align: center;
+	font-size: 32px;
+	color: #fff;
+	display: block;
+	margin: 0 auto;
+	border-radius: 8px;
+	margin-top: 338px;
+}

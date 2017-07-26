@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgh.recruitcmbs.dao.read.IGreatDemandDaoR">
+
+    <!--实体映射-->
+    <resultMap id="GreatDemand" type="com.xgh.recruitcmbs.entity.GreatDemand">
+        <!---->
+        <id property="id" column="id" javaType="Long"/>
+        <!--公司id-->
+        <result property="companyId" column="company_id" javaType="long" jdbcType="BIGINT"/>
+        <!--热门职位数量-->
+        <result property="hotCount" column="hot_count" javaType="int" jdbcType="INTEGER"/>
+        <!--工作种类id-->
+        <result property="jobKindsId" column="job_kinds_id" javaType="long" jdbcType="BIGINT"/>
+        <!--创建日期-->
+        <result property="createDate" column="create_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--更新日期-->
+        <result property="updateDate" column="update_date" javaType="Date" jdbcType="TIMESTAMP"/>
+        <!--1整除0删除-->
+        <result property="status" column="status" javaType="int" jdbcType="INTEGER"/>
+        <!--备用字段1-->
+        <result property="data1" column="data_1" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段2-->
+        <result property="data2" column="data_2" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段3-->
+        <result property="data3" column="data_3" javaType="String" jdbcType="VARCHAR"/>
+        <!--备用字段4-->
+        <result property="data4" column="data_4" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+		id,	company_id,	hot_count,	job_kinds_id,	create_date,	update_date,	status,	data_1,	data_2,	data_3,	data_4
+	</sql>
+
+    <!-- 查询（根据主键ID查询） -->
+    <select id="get" resultMap="GreatDemand" parameterType="java.lang.Long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_great_demand
+        WHERE id = #{id}
+    </select>
+
+    <select id="getHotCompanies" resultType="hashmap">
+		SELECT
+			COUNT(g.company_id) AS count,
+			g.company_id AS companyId,
+			c.company_name AS companyName
+		FROM
+			tb_great_demand g
+		LEFT JOIN tb_company_info c ON g.company_id = c.id
+		GROUP BY
+			g.company_id
+		ORDER BY
+			count DESC
+		LIMIT 8
+	</select>
+
+    <select id="getHotCount" parameterType="hashmap" resultMap="GreatDemand">
+        SELECT
+        *
+        from
+        tb_great_demand
+        where
+        company_id=#{companyId}
+        and
+        job_kinds_id=#{jobKindsId}
+        AND
+        status=1
+	</select>
+
+
+    <select id="getHotPositions" resultType="hashmap">
+		SELECT
+			COUNT(g.job_kinds_id) AS count,
+			g.job_kinds_id AS jobKindsId,
+			k.`name` AS jobKindsName
+		FROM
+			tb_great_demand g
+		LEFT JOIN tb_kinds k ON g.job_kinds_id = k.id
+		GROUP BY
+			g.company_id
+		ORDER BY
+			count DESC
+		LIMIT 8
+	</select>
+
+
+</mapper>

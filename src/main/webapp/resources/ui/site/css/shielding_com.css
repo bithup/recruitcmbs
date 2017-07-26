@@ -1,0 +1,34 @@
+.ipt{
+	width: 100%;
+	overflow: hidden;
+	margin: 16px 0 155px;
+}
+.ipt input[type="text"]{
+	float: left;
+	width: 100%;
+	line-height: 80px;
+	padding-left: 18px;
+	font-size: 30px;
+	color: #333;
+}
+.ipt input[type="submit"]{
+	float: left;
+	width: 150px;
+	line-height: 60px;
+	text-align: center;
+	background: #35ccab;
+	border-radius: 8px;
+	font-size: 28px;
+	margin: 32px 0 0 16px;
+}
+.content span{
+	font-size: 28px;
+	margin: 0 0 20px 24px;
+	float: left;
+}
+.content ul li{
+	background: #fff;
+	line-height: 60px;
+	margin-bottom: 16px;
+	padding: 0 32px;
+}

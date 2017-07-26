@@ -1,0 +1,77 @@
+.my_intro{
+	width: 100%;
+}
+.my_intro ul li{
+	padding: 30px 0;
+	margin-top: 16px;
+	background: #fff;
+}
+.my_intro ul li a{
+	display: block;
+	width: 100%;
+	color: #333;
+}
+.touxiang{
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background: url(../images/myresume.png) 0 0 no-repeat;
+	margin-left: 50px;
+}
+.basic{
+	float: right;
+	width: 67%;
+	margin-right: 24px;
+	background: url(../images/sel.png) right center no-repeat;
+}
+.basic i:nth-child(1){
+	position: relative;
+	padding-right: 30px;
+	margin-right: 19px;
+}
+.basic i:nth-child(1)::after{
+	content: "";
+	display: inline-block;
+	width: 1px;
+	height: 22px;
+	background: #333;
+	position: absolute;
+	right: 0px;
+	top: 12px;
+}
+.basic b{
+	display: block;
+	margin-top: 36px;
+}
+.my_intro ul li .my_company{
+	width: 95%;
+	border-bottom: 1px solid #eee;
+	overflow: hidden;
+	margin: 0 auto 30px;
+	padding-bottom: 30px;
+	background: url(../images/sel.png) right 6px no-repeat;
+}
+.my_company i{
+	float: right;
+	margin-right: 25px;
+}
+.my_intro ul li .work_exp{
+	text-align: center;
+	color: #35ccab;
+}
+.my_intro ul .isenter{
+	background: #fff url(../images/sel.png) 97% center no-repeat;
+	padding: 0 25px;
+	line-height: 100px;
+}
+.preview{
+	width: 100%;
+	line-height: 100px;
+	text-align: center;
+	background: #66e6c9;
+	margin-top: 125px;
+}
+.preview a{
+	color: #fff;
+}
